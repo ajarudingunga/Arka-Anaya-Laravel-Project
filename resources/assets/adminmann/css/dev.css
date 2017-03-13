@@ -1,0 +1,70 @@
+.none {
+	display: none;
+}
+
+.help-block {
+	color: #ff4949;
+}
+
+.badge {
+    font-size: 11px !important;
+    font-weight: 300;
+    text-align: center;
+    background-color: #fff;
+    height: 18px;
+    padding: 3px 6px 3px 6px;
+    -webkit-border-radius: 12px !important;
+    -moz-border-radius: 12px !important;
+    border-radius: 12px !important;
+    text-shadow: none !important;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#frmEditRestaurant .list-group {
+	list-style: none;
+}
+
+#frmAddEmployee .checker {
+	margin-left: 0px !important;
+}
+
+#frmAddEmployee .fa-bell {
+	font-size: 22px;
+}
+
+.dashboard-stat.olive {
+    background-color: #808000;
+}
+
+.dashboard-stat.lightSalmon {
+    background-color: #FFA07A;
+}
+
+.dashboard-stat.SlateGray {
+    background-color: #708090;
+}
+
+.dashboard-stat.DarkKhaki {
+    background-color: #BDB76B;
+}
+
+.dashboard-stat.RosyBrown {
+    background-color: #BC8F8F;
+}
+
+.dashboard-stat.CadetBlue {
+    background-color: #5F9EA0;
+}
+
+.dashboard-stat.MediumTurquoise {
+    background-color: #48D1CC;
+}
+
+.dashboard-stat.Plum {
+    background-color: #DDA0DD;
+}
+
+.dashboard-stat.Goldenrod {
+    background-color: #DAA520;
+}

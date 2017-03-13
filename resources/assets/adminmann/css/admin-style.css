@@ -1,0 +1,10 @@
+/*Admin Style--02/09/2016*/
+.userdashboard .dashboard-stat { min-height: 129px;}
+.userdashboard .dashboard-stat .details .number{font-size:22px;  font-family: "Open Sans",sans-serif; letter-spacing:1px;}
+.userdashboard .dashboard-stat .visual i{font-size: 40px;}
+.userdashboard .dashboard-stat .details{position:relative; left:auto; right:auto; top:auto; float:right;}
+.userdashboard .dashboard-stat .details .desc{padding-bottom:5px;}
+.userdashboard .dashboard-stat .details .desc a{color:#fff;}
+.dashboard-stat .details .number{padding-top:5px;}
+.dashboard-stat .visual{padding-top:5px;}
+/*Admin Style--02/09/2016*/

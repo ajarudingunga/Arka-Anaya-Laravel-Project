@@ -1,0 +1,208 @@
+<?php $__env->startSection('content'); ?>
+
+<div id="container">
+    <div class="container">
+      <!-- Breadcrumb Start-->
+      <ul class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Account</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+      <!-- Breadcrumb End-->
+      <div class="row">
+        <!--Middle Part Start-->
+        <div class="col-sm-9" id="content">
+          <h1 class="title">Request for Account</h1>
+          <p>If you already have an account with us, please login at the <a href="">Login Page</a>.</p>
+          <form class="form-horizontal" method="POST" action="<?php echo e(url('register')); ?>">
+              <?php echo e(csrf_field()); ?>
+
+            <fieldset id="account">
+              <legend>Your Personal Details</legend>
+               <div class="form-group <?php echo e($errors->has('account_type') ? ' has-error' : ''); ?>">
+                <label for="input-country" class="col-sm-2 control-label">Account Type</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="account_type" name="account_type">
+                        <option value="<?php echo e(old('account_type') ? old('account_type') : ''); ?>"><?php echo e(old('account_type') ? old('account_type') : '--Please select--'); ?></option>
+                    <option value="Student">Student</option>
+                    <option value="Staff">Staff</option>
+                  </select>
+                  <?php if($errors->has('account_type')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('account_type')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+
+
+                </div>
+              </div>
+
+            <div class="form-group <?php echo e($errors->has('enrollment') ? ' has-error' : ''); ?>">
+                <label for="input-Enrollment" class="col-sm-2 control-label">Enrollment</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="enrollment" placeholder="Staff can enter Staff ID" value="<?php echo e(old('enrollment')); ?>" name="enrollment">
+                  <?php if($errors->has('enrollment')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('enrollment')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+                </div>
+              </div>
+
+              <div class="form-group <?php echo e($errors->has('firstname') ? ' has-error' : ''); ?>">
+                <label for="input-firstname" class="col-sm-2 control-label">First Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="firstname" placeholder="First Name" value="<?php echo e(old('firstname')); ?>" name="firstname">
+                  <?php if($errors->has('firstname')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('firstname')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+                </div>
+
+              </div>
+
+
+            <div class="form-group <?php echo e($errors->has('lastname') ? ' has-error' : ''); ?>">
+                <label for="input-lastname" class="col-sm-2 control-label">Last Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="lastname" placeholder="Last Name" value="<?php echo e(old('lastname')); ?>" name="lastname">
+                  <?php if($errors->has('lastname')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('lastname')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+
+                </div>
+              </div>
+
+
+              <div class="form-group <?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                <label for="input-email" class="col-sm-2 control-label">E-Mail</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="email" placeholder="E-Mail" value="<?php echo e(old('email')); ?>" name="email">
+                  <?php if($errors->has('email')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('email')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+
+                </div>
+              </div>
+
+
+              <div class="form-group <?php echo e($errors->has('mobile') ? ' has-error' : ''); ?>">
+                <label for="input-telephone" class="col-sm-2 control-label">Mobile</label>
+                <div class="col-sm-10">
+                  <input type="tel" class="form-control" id="mobile" placeholder="Mobile" value="<?php echo e(old('mobile')); ?>" name="mobile">
+                  <?php if($errors->has('mobile')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('mobile')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+
+                </div>
+              </div>
+
+
+               <div class="form-group <?php echo e($errors->has('department') ? ' has-error' : ''); ?>">
+                <label for="department" class="col-sm-2 control-label">Department</label>
+                <div class="col-sm-10">
+                  <select class="form-control" id="department" name="department"  >
+                        <option value="<?php echo e(old('department') ? old('department') : ''); ?>"><?php echo e(old('department') ? old('department') : '--Please select--'); ?></option>
+                    <option value="Computer Science &amp; Enginnering">Computer Science &amp; Enginnering</option>
+                    <option value="IT Enginnering">IT Enginnering</option>
+                    <option value="Mechanical Enginnering">Mechanical Enginnering</option>
+                  </select>
+                  <?php if($errors->has('department')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('department')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+
+                </div>
+              </div>
+
+            </fieldset>
+            <fieldset id="address">
+              <legend>Your Address</legend>
+
+               <div class="form-group <?php echo e($errors->has('campustick') ? ' has-error' : ''); ?>">
+                <label for="" class="col-sm-2 control-label"></label>
+                <div class="col-sm-10">
+                  <input type="checkbox" name="campustick" <?php echo e(old('campustick') ? 'checked' : ''); ?> >
+                  Tick if you Residing at Campur Hostel
+                  <?php if($errors->has('campustick')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('campustick')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+                </div>
+              </div>
+
+              <div class="form-group <?php echo e($errors->has('address') ? ' has-error' : ''); ?>">
+                <label for="input-address-1" class="col-sm-2 control-label">Address</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="address" placeholder="Address " value="<?php echo e(old('address')); ?>" name="address">
+                  <?php if($errors->has('address')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('address')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+
+                </div>
+              </div>
+
+              <div class="form-group <?php echo e($errors->has('city') ? ' has-error' : ''); ?>">
+                <label for="input-city" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="input-city" placeholder="City" value="<?php echo e(old('city')); ?>" name="city">
+                  <?php if($errors->has('city')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('city')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+
+                </div>
+              </div>
+              <div class="form-group <?php echo e($errors->has('postcode') ? ' has-error' : ''); ?>">
+                <label for="input-postcode" class="col-sm-2 control-label">Post Code</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="postcode" placeholder="Post Code" value="<?php echo e(old('postcode')); ?>" name="postcode">
+                  <?php if($errors->has('postcode')): ?>
+                      <span class="help-block alert alert-danger">
+                          <strong><?php echo e($errors->first('postcode')); ?></strong>
+                      </span>
+                  <?php endif; ?>
+
+                </div>
+              </div>
+
+            </fieldset>
+
+            <div class="buttons">
+              <div class="pull-right">
+                <input type="checkbox" name="agree">
+                &nbsp;I have read and agree to the <a class="agree" href="#"><b>Privacy Policy</b></a> &nbsp;
+
+                <?php if($errors->has('agree')): ?>
+                    <span class="help-block alert alert-danger">
+                        <strong><?php echo e($errors->first('agree')); ?></strong>
+                    </span>
+                <?php endif; ?>
+
+                <input type="submit" class="btn btn-primary" value="Continue">
+              </div>
+            </div>
+          </form>
+        </div>
+        <!--Middle Part End -->
+
+      </div>
+    </div>
+  </div>
+
+
+  <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

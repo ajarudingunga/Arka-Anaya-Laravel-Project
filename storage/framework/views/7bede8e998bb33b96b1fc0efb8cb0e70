@@ -1,0 +1,14 @@
+<?php $__env->startSection('title', 'Page Not Found | Portalic.us'); ?>
+<?php $__env->startSection('meta_description', ''); ?>
+<?php $__env->startSection('meta_keyword', ''); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="bannar-main blue-bg">
+    <div class="wrapper text-center">
+        <h2>Sorry, that page doesn’t exist!</h2>
+        <h3>It's looking like you may have taken a wrong turn.</h3>
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.cmsMaster', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,283 @@
+<?php $__env->startSection('content'); ?>
+<style media="screen">
+.btn-grey {
+    background-color: gray;
+    border-color: grey;
+    color:white;
+}
+</style>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Product</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" action="<?php echo e(url('admin/product')); ?>" method="post" enctype="multipart/form-data">
+
+                      <div class="form-group <?php echo e($errors->has('productname') ? ' has-error' : ''); ?>">
+                        <label  class="col-sm-4 control-label"
+                                  for="inputEmail3">Name</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                            id="productname" name="productname" placeholder="New Product Name" value="<?php echo e(old('productname')); ?>"/>
+
+                            <?php if($errors->has('productname')): ?>
+                                <span class="help-block alert alert-danger">
+                                <strong><?php echo e($errors->first('productname')); ?></strong>
+                                </span>
+                            <?php endif; ?>
+
+                        </div>
+                      </div>
+
+                      <div class="form-group <?php echo e($errors->has('productprice') ? ' has-error' : ''); ?>">
+                        <label  class="col-sm-4 control-label"
+                                  for="inputEmail3">Price</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                            id="productprice" name="productprice" placeholder="Product Price" value="<?php echo e(old('productprice')); ?>"/>
+                            <?php if($errors->has('productprice')): ?>
+                                <span class="help-block alert alert-danger">
+                                <strong><?php echo e($errors->first('productprice')); ?></strong>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group <?php echo e($errors->has('categoryname') ? ' has-error' : ''); ?>">
+                        <label  class="col-sm-4 control-label"
+                                  for="inputEmail3">Category</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="categoryname">
+                                <option value="">--Please select--</option>
+                                <?php foreach($getCategory as $key => $getCategory): ?>
+                                    <option value="<?php echo e($getCategory->id); ?>"><?php echo e($getCategory->category_name); ?></option>
+                                <?php endforeach; ?>
+
+                            </select>
+                            <?php if($errors->has('categoryname')): ?>
+                                <span class="help-block alert alert-danger">
+                                <strong><?php echo e($errors->first('categoryname')); ?></strong>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+
+                       <div class="form-group <?php echo e($errors->has('foodtype') ? ' has-error' : ''); ?>">
+                        <label  class="col-sm-4 control-label"
+                                  for="inputEmail3">Type</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="foodtype">
+                                <option value="<?php echo e(old('foodtype') ? old('foodtype') : ''); ?>">
+                                    <?php echo e(old('foodtype') ? old('foodtype') : '--Please select--'); ?></option>
+
+
+                                <option value="Veg">Veg</option>
+                                <option value="Jain">Jain</option>
+                                <option value="n-Veg">n-Veg</option>
+                            </select>
+                            <?php if($errors->has('foodtype')): ?>
+                                <span class="help-block alert alert-danger">
+                                <strong><?php echo e($errors->first('foodtype')); ?></strong>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group <?php echo e($errors->has('productImage') ? ' has-error' : ''); ?>">
+                        <label  class="col-sm-4 control-label"
+                                  for="inputEmail3">Image</label>
+                        <div class="col-sm-8" style="min-height: 30px;">
+                            <input type="file"
+                            id="productImage" name="productImage" accept="image/*"/>
+                            <?php if($errors->has('productImage')): ?>
+                                <span class="help-block alert alert-danger">
+                                <strong><?php echo e($errors->first('productImage')); ?></strong>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group <?php echo e($errors->has('productdesc') ? ' has-error' : ''); ?>">
+                        <label  class="col-sm-4 control-label"
+                                  for="">Description</label>
+                        <div class="col-sm-8">
+                            <textarea name="productdesc" class="form-contorl" placeholder="Description" style="width:100%;"></textarea>
+                            <?php if($errors->has('productdesc')): ?>
+                                <span class="help-block alert alert-danger">
+                                <strong><?php echo e($errors->first('productdesc')); ?></strong>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+          </div>
+       </div>
+
+        <section class="content-header">
+            <h1>Products</h1>
+            <ol class="breadcrumb">
+                <li><a href="<?php echo e(url('admin/dashboard')); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Products</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <?php if(Session::has('message')): ?>
+                    <div class="alert <?php echo e(Session::get('alert-class')); ?> fade-in" id="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <?php echo e(Session::get('message')); ?>
+
+                    </div>
+                    <?php endif; ?>
+                </div>
+
+                <div class="col-sm-2 pull-right" style="padding-bottom: 15px; padding-top: 30px;">
+                    <button type="button" class="btn btn-block btn-primary btn-lg" data-toggle="modal" data-target="#myModal">New Product</button>
+                </div>
+
+
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title"></h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-1">SR.NO</th>
+                                        <th class="col-md-2">Product Name</th>
+                                        <th class="col-md-1">Price</th>
+                                        <th class="col-md-2">Category</th>
+                                        <th >Type</th>
+                                        <th >Image</th>
+                                        <th class="col-md-3">Description</th>
+                                        <th>Status</th>
+                                        <th class="col-md-3">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach($productData as  $key=>$productData): ?>
+                                    <tr>
+                                        <td><?php echo e(++$key); ?></td>
+
+                                        <td><?php echo e($productData->product_name); ?></td>
+
+                                        <td><i class="fa fa-rupee">&nbsp;</i><?php echo e($productData->product_price); ?></td>
+
+                                        <td>
+                                            <?php echo e($result = Helper::getCategoryName($productData->product_category_id)); ?>
+
+                                        </td>
+
+                                        <?php if($productData->product_type=='Veg'): ?>
+                                            <td class="text-green">Veg</td>
+                                        <?php elseif($productData->product_type=='Jain'): ?>
+                                            <td class="text-warning">Jain</td>
+                                        <?php elseif($productData->product_type=='n-Veg'): ?>
+                                            <td class="text-danger">n-Veg</td>
+                                        <?php endif; ?>
+
+                                        <td><img style="height:30px;width:30px;" src=" <?php echo e(URL:: asset('/resources/uploads/avatars/'.$productData->product_image_url)); ?>"></td>
+                                        <td><?php echo e($productData->product_description); ?></td>
+
+                                        <?php if($productData->product_status=='1'): ?>
+                                            <td class="text-green">Active</td>
+                                        <?php else: ?>
+                                            <td class="text-danger">Deactive</td>
+                                        <?php endif; ?>
+
+                                        <td>
+                                            <a href="<?php echo e(url('admin/product/delete', ['id' => $productData->id])); ?>" class="btn btn-social-icon btn-danger" title="Delete" onclick="return confirm('Are you sure you want to Delete?');">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                            <a href="" class="btn btn-social-icon btn-success" title="Update">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </a>
+
+                                            <?php if($productData->product_status=='0'): ?>
+                                                <a href="<?php echo e(url('admin/product/toggleStatus', ['id' => $productData->id])); ?>" class="btn btn-social-icon btn-danger" title="click to Activate">
+                                                    <i class="fa fa-toggle-off"></i>
+                                                </a>
+                                            <?php else: ?>
+                                                <a href="<?php echo e(url('admin/product/toggleStatus', ['id' => $productData->id])); ?>" class="btn btn-social-icon btn-primary" title="click to Deactivate">
+                                                    <i class="fa fa-toggle-on"></i>
+                                                </a>
+                                            <?php endif; ?>
+
+
+                                            <?php if($productData->featured=='1'): ?>
+                                                <a href="<?php echo e(url('admin/product/toggleFeatured', ['id' => $productData->id])); ?>" class="btn btn-social-icon btn-warning" title="click to Remove from Featured">
+                                                    <i class="fa fa-quote-right"></i>
+                                                </a>
+                                            <?php else: ?>
+                                                <a href="<?php echo e(url('admin/product/toggleFeatured', ['id' => $productData->id])); ?>" class="btn btn-social-icon btn-grey" title="click to Make Featured">
+                                                    <i class="fa fa-quote-right"></i>
+                                                </a>
+                                            <?php endif; ?>
+
+
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+
+    <script>
+        $("#alert").fadeTo(2000, 500).slideUp(500, function(){
+        $("#alert").slideUp(500);
+    });
+    </script>
+
+    <?php if(Session::has('errors')): ?>
+        <script>
+        $(function() {
+            $('#myModal').modal('show');
+        });
+        </script>
+    <?php endif; ?>
+
+    <script type="text/javascript">
+       $(function() {
+           $('#example1').DataTable({
+               "paging": true,
+               "lengthChange": true,
+               "searching": true,
+               "ordering": true,
+               "info": true,
+               "autoWidth": true
+           });
+       });
+   </script>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.adminMaster', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<base href="<?php echo e(URL::asset('/')); ?>" target="_top">
+<link href="<?php echo e(URL::asset('/resources/assets/user/image/favicon.png')); ?>" rel="icon" />
+<title>Arka Anaya</title>
+<!-- CSS Part Start-->
+<?php echo $__env->make('partials.user.css', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<!-- CSS Part End-->
+</head>
+<body>
+<div class="wrapper-wide">
+<?php echo $__env->make('partials.user.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+<?php echo $__env->yieldContent('content'); ?>
+
+<?php echo $__env->make('partials.user.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</div>
+<?php echo $__env->make('partials.user.js', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</body>
+</html>

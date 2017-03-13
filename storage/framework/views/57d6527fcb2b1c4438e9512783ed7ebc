@@ -1,0 +1,138 @@
+<?php $__env->startSection('content'); ?>
+
+
+    <div id="container">
+      <div class="container">
+        <!-- Breadcrumb Start-->
+        <ul class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a></li>
+          <li><a href="#"><?php echo e($name = Helper::getCategoryName($id)); ?> </a></li>
+        </ul>
+        <!-- Breadcrumb End-->
+        <div class="row">
+          <!--Left Part Start -->
+          <aside id="column-left" class="col-sm-3 hidden-xs">
+            <h3 class="subtitle">Categories</h3>
+
+            <div class="box-category">
+              <ul id="cat_accordion">
+                <?php foreach($categoryname = Helper::getAllCategory() as $categoryname): ?>
+                    <li><a href="<?php echo e(url('user/category', ['id' => $categoryname->id])); ?>"><?php echo e($categoryname->category_name); ?></a>
+                <?php endforeach; ?>
+              </ul>
+            </div>
+
+
+            <h3 class="subtitle">Bestsellers</h3>
+            <div class="side-item">
+
+            <?php foreach($feturedProduct = Helper::getFeaturedProducts() as $feturedProduct): ?>
+              <div class="product-thumb clearfix">
+                <div class="image"><a href="<?php echo e(url('user/product', ['id' => $feturedProduct->id])); ?>"><img src="<?php echo e(URL::asset('/resources/uploads/avatars/'.$feturedProduct->product_image_url)); ?>" alt="" title="" class="img-responsive" /></a></div>
+                <div class="caption">
+                  <h4><a href="<?php echo e(url('user/product', ['id' => $feturedProduct->id])); ?>"><?php echo e($feturedProduct->product_name); ?></a></h4>
+
+                  <p class="price">
+                      <span class="price-new"><i class="fa fa-inr"> </i> <?php echo e($feturedProduct->product_price); ?></span>
+                      <span class="price-old"><i class="fa fa-inr"> </i> <?php echo e($feturedProduct->product_old_price); ?></span>
+
+                      <?php if($feturedProduct->product_type == "Veg" ): ?>
+                          <span class="saving">Veg</span>
+                      <?php elseif($feturedProduct->product_type == "Jain"): ?>
+                               <span class="saving" style="background: #f0ad4e;">Jain</span>
+                      <?php elseif($feturedProduct->product_type == "n-Veg"): ?>
+                               <span class="saving"  style="background: #d9534f;">n-Veg</span>
+                      <?php endif; ?>
+
+                  </p>
+                </div>
+              </div>
+             <?php endforeach; ?>
+
+            </div>
+
+
+          </aside>
+          <!--Left Part End -->
+          <!--Middle Part Start-->
+          <div id="content" class="col-sm-9">
+            <h1 class="title"><?php echo e($name = Helper::getCategoryName($id)); ?></h1>
+            <div class="product-filter">
+              <div class="row">
+                <div class="col-md-4 col-sm-5">
+                  <div class="btn-group">
+                    <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="List"></button>
+                    <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="Grid"></button>
+                  </div>
+                   </div>
+                <div class="col-sm-2 text-right">
+                  <label class="control-label" for="input-sort"></label>
+                </div>
+                <div class="col-md-3 col-sm-2 text-right">
+
+                </div>
+                <div class="col-sm-1 text-right">
+                  <label class="control-label" for="input-limit"></label>
+                </div>
+                <div class="col-sm-2 text-right">
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="row products-category">
+
+            <?php foreach($products as $product): ?>
+              <div class="product-layout product-list col-xs-12">
+                <div class="product-thumb">
+                  <div class="image"  style=""><a href="<?php echo e(url('user/product', ['id' => $product->id])); ?>"><img src="<?php echo e(URL::asset('/resources/uploads/avatars/'.$product->product_image_url)); ?>" alt="<?php echo e($product->product_name); ?>" title="<?php echo e($product->product_name); ?>"  class="img-responsive" style="min-height: 200px; max-height:200px; object-fit:cover; " />
+                  </a>
+                    </div>
+                  <div>
+                    <div class="caption">
+                      <h4><a href="<?php echo e(url('user/product', ['id' => $product->id])); ?>"> <?php echo e($product->product_name); ?>" </a></h4>
+                      <p class="description"> </p>
+                      <p class="price">
+                          <span class="price-new"><i class="fa fa-inr"> </i> <?php echo e($product->product_price); ?></span>
+                          <span class="price-old"> <i class="fa fa-inr"> </i> <?php echo e($product->product_old_price); ?></span>
+
+                          <?php if($product->product_type == "Veg" ): ?>
+                              <span class="saving">Veg</span>
+                          <?php elseif($product->product_type == "Jain"): ?>
+                                   <span class="saving" style="background: #f0ad4e;">Jain</span>
+                          <?php elseif($product->product_type == "n-Veg"): ?>
+                                   <span class="saving"  style="background: #d9534f;">n-Veg</span>
+                          <?php endif; ?>
+
+                      </p>
+                    </div>
+                    <div class="button-group">
+                      <a href="<?php echo e(url('/addtocart', ['id' => $product->id])); ?>"><button class="btn-primary" type="button"><span>Add to Cart</span></button></a>
+                      <div class="add-to-links">
+                        <a href="<?php echo e(url('/addToWishlist', ['id' => $product->id])); ?>" style="color:black;"><button type="button" data-toggle="tooltip" title="Add to Wish List" onClick=""><i class="fa fa-heart"></i> <span>Add to Wish List</span>
+                        </button></a>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                     <?php endforeach; ?>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 text-left">
+                  <?php echo $products->render(); ?>
+
+              </div>
+
+            </div>
+          </div>
+          <!--Middle Part End -->
+        </div>
+      </div>
+    </div>
+
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

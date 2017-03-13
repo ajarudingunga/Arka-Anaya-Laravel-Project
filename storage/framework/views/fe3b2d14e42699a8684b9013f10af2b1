@@ -1,0 +1,94 @@
+<?php $__env->startSection('content'); ?>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+
+
+        <section class="content-header">
+            <h1>Payments / Transactions</h1>
+            <ol class="breadcrumb">
+                <li><a href="<?php echo e(url('admin/dashboard')); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Payment</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <?php if(Session::has('message')): ?>
+                    <div class="alert <?php echo e(Session::get('alert-class')); ?> fade-in" id="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <?php echo e(Session::get('message')); ?>
+
+                    </div>
+                    <?php endif; ?>
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Payments</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Payment ID</th>
+                                        <th>User Enrollment</th>
+                                        <th>At Time</th>
+                                        <th>Amount</th>
+                                        <th>Order ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     <?php foreach($payments as $key => $payment): ?>
+                                        <tr>
+                                            <td>#<?php echo e($payment->id); ?></td>
+                                            <td>
+                                                <?php echo e($enrol=Helper::getUserEnrollment($payment->user_id)); ?>
+
+                                            </td>
+                                            <td><?php echo e($payment->created_at); ?></td>
+                                            <td><?php echo e($payment->amount); ?></td>
+                                            <td>#<?php echo e($payment->order_id); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+
+    <script>
+        $("#alert").fadeTo(2000, 500).slideUp(500, function(){
+        $("#alert").slideUp(500);
+    });
+    </script>
+
+    <script type="text/javascript">
+       $(function() {
+           $('#example1').DataTable({
+               "paging": true,
+               "lengthChange": true,
+               "searching": true,
+               "ordering": false,
+               "info": true,
+               "autoWidth": true
+           });
+       });
+   </script>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.adminMaster', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

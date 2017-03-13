@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php echo $__env->make('layouts.cmsHeaderInc', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</head>
+<body>
+    <div id="main">
+        <?php echo $__env->make('layouts.cmsHeader', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->yieldContent('content'); ?>
+        <?php echo $__env->make('layouts.cmsFooter', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </div>
+    <?php echo $__env->make('layouts.cmsFooterInc', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</body>
+</html>
